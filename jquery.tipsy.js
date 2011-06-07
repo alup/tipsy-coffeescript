@@ -63,15 +63,15 @@
               tp.left = pos.left + pos.width / 2 - 15;
             } else {
               tp.left = pos.left + pos.width / 2 - actualWidth + 15;
-              $tip.css(tp).addClass('tipsy-' + gravity);
             }
           }
+          $tip.css(tp).addClass('tipsy-' + gravity);
           $tip.find('.tipsy-arrow')[0].className = 'tipsy-arrow tipsy-arrow-' + gravity.charAt(0);
           if (this.options.className) {
             $tip.addClass(maybeCall(this.options.className, this.$element[0]));
           }
           if (this.options.fade) {
-            return $tip.stop().css({
+            $tip.stop().css({
               opacity: 0,
               display: 'block',
               visibility: 'visible'
@@ -79,7 +79,7 @@
               opacity: this.options.opacity
             });
           } else {
-            return $tip.css({
+            $tip.css({
               visibility: 'visible',
               opacity: this.options.opacity
             });
@@ -99,7 +99,7 @@
         var $e;
         $e = this.$element;
         if ($e.attr('title') || typeof ($e.attr('original-title')) !== 'string') {
-          return $e.attr('original-title', $e.attr('title') || '').removeAttr('title');
+          $e.attr('original-title', $e.attr('title') || '').removeAttr('title');
         }
       };
       Tipsy.prototype.getTitle = function() {
@@ -117,7 +117,7 @@
       };
       Tipsy.prototype.tip = function() {
         var _ref;
-        return (_ref = this.$tip) != null ? _ref : this.$tip = $('<div class="tipsy"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"></div>');
+        return (_ref = this.$tip) == null ? this.$tip = $('<div class="tipsy"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"></div>') : (_ref = this.$tip);
       };
       Tipsy.prototype.validate = function() {
         if (!this.$element[0].parentNode) {
@@ -133,7 +133,7 @@
         this.enabled = false;
       };
       Tipsy.prototype.toggleEnabled = function() {
-        return this.enabled = !this.enabled;
+        this.enabled = !this.enabled;
       };
       return Tipsy;
     })();
@@ -186,7 +186,7 @@
       };
       if (!options.live) {
         this.each(function() {
-          return get(this);
+          get(this);
         });
       }
       if (options.trigger !== 'manual') {

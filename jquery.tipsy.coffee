@@ -48,7 +48,7 @@
                         tp.left = pos.left + pos.width / 2 - actualWidth + 15
                 # TODO: Explain this :)
     
-                        $tip.css(tp).addClass('tipsy-' + gravity)
+                $tip.css(tp).addClass('tipsy-' + gravity)
                 $tip.find('.tipsy-arrow')[0].className = 'tipsy-arrow tipsy-arrow-' + gravity.charAt(0)
                 if this.options.className
                     $tip.addClass(maybeCall(this.options.className, this.$element[0]))
@@ -56,7 +56,7 @@
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity})
                 else
                     $tip.css({visibility: 'visible', opacity: this.options.opacity})
-
+            return
         hide: ->
             if this.options.fade
                 this.tip().stop().fadeOut( ->
@@ -72,6 +72,7 @@
             $e = this.$element
             if $e.attr('title') or typeof($e.attr('original-title')) != 'string'
                 $e.attr('original-title', $e.attr('title') or '').removeAttr('title')
+            return
  
         getTitle: ->
             $e = this.$element
@@ -104,6 +105,7 @@
 
         toggleEnabled: ->
             this.enabled = not this.enabled
+            return
 
     $.fn.tipsy = (options) ->
         if options == true
@@ -146,7 +148,10 @@
                 , options.delayOut)
 
         unless options.live
-            this.each(-> get(this))
+            this.each(->
+                get(this)
+                return
+            )
         if options.trigger != 'manual'
             binder   = if options.live then 'live' else 'bind'
             eventIn  = if options.trigger == 'hover' then 'mouseenter' else 'focus'
